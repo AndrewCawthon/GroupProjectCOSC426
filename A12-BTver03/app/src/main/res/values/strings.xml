@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">A12-BTver03</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="button_click">Hello Android 426</string>
+    <string name="first_menu">Request BT Permissions</string>
+    <string name="second_menu">Locate In Paired BT List</string>
+    <string name="third_menu">Connect To EV3</string>
+    <string name="fourth_menu">Move Motor</string>
+    <string name="fifth_menu">Play Tone</string>
+    <string name="sixth_menu">Disconnect From EV3</string>
+    <string name="menu_first">1. Grant Permission</string>
+</resources>
