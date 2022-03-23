@@ -9,4 +9,14 @@
     <string name="fifth_menu">Play Tone</string>
     <string name="sixth_menu">Disconnect From EV3</string>
     <string name="menu_first">1. Grant Permission</string>
+
+    <string name="connect_button_text">Connect</string>
+    <string name="close_button_text">Close</string>
+    <string name="title">NXT Device Bluetooth Connection</string>
+    <string name="tilt_on">Tilt ON</string>
+    <string name="tilt_off">Tilt OFF</string>
+    <string name="battery_level">Battery Level</string>
+    <string name="lego_device_text">Lego Device</string>
+    <string name="connection_text">Not Connected</string>
+
 </resources>
