@@ -25,6 +25,7 @@ public class RobotDriveScreen extends AppCompatActivity {
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             Intent intent = getIntent();
+        final String robotName = intent.getStringExtra("RobotName");
 
 
         binding.sbPowerhigh.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent lv_it = new Intent(MainActivity.this, RobotDriveScreen.class);
+                lv_it.putExtra("RobotName", CV_ROBOTNAME);
                 startActivity(lv_it);
             }
         });
