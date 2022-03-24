@@ -8,6 +8,7 @@ import com.example.a12_btver03.databinding.ActivityMainBinding;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
@@ -62,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getBaseContext(), "Close", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.driveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent lv_it = new Intent(MainActivity.this, RobotDriveScreen.class);
+                startActivity(lv_it);
             }
         });
 

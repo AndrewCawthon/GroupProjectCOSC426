@@ -12,6 +12,7 @@
 
     <string name="connect_button_text">Connect</string>
     <string name="close_button_text">Close</string>
+    <string name="drive_button_text">Drive</string>
     <string name="title">NXT Device Bluetooth Connection</string>
     <string name="tilt_on">Tilt ON</string>
     <string name="tilt_off">Tilt OFF</string>
