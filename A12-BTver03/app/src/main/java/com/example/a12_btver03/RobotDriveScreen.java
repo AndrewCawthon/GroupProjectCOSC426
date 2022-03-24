@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -80,9 +81,18 @@ public class RobotDriveScreen extends AppCompatActivity {
 
                 binding.driveUp.setColorFilter(new ColorMatrixColorFilter(NEGATIVE));*/
                 //insert drive forward
+
                 return false;
             }
         });
+
+        binding.driveUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "Forward", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         binding.driveRight.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view){
@@ -92,6 +102,13 @@ public class RobotDriveScreen extends AppCompatActivity {
                 return false;
             }
         });
+        binding.driveRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "Right", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         binding.driveLeft.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view){
@@ -101,12 +118,26 @@ public class RobotDriveScreen extends AppCompatActivity {
                 return false;
             }
         });
+        binding.driveLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "Left", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         binding.driveBack.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view){
                 //feedback state
                 //insert reverse
                 return false;
+            }
+        });
+
+        binding.driveBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "Backward", Toast.LENGTH_SHORT).show();
             }
         });
 
