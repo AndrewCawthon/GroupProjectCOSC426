@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getBaseContext(), "Connect", Toast.LENGTH_SHORT).show();
+                cpf_connectToEV3(cv_btDevice);
+                //binding.bluetoothImageView.setImageResource(R.drawable.ic_action_bluetooth_on_symbol);
             }
         });
 
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         binding.tiltOffButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "Tilt On", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Tilt Off", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -91,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
             binding.secondaryTextView.setText("BLUETOOTH_CONNECT NOT granted.\n");
         } else {
             binding.secondaryTextView.setText("BLUETOOTH_CONNECT already granted.\n");
+            binding.bluetoothImageView.setImageResource(R.drawable.ic_action_bluetooth_on_symbol);
         }
     }
 
@@ -155,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
                     (UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
             cv_btSocket.connect();
             binding.secondaryTextView.setText("Connect to " + bd.getName() + " at " + bd.getAddress());
+            binding.bluetoothImageView.setImageResource(R.drawable.ic_action_bluetooth_on_symbol);
             cv_is = cv_btSocket.getInputStream();
             cv_os = cv_btSocket.getOutputStream();
         }
@@ -286,6 +290,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(MainActivity.this,
                     "BLUETOOTH_CONNECT already granted", Toast.LENGTH_SHORT).show();
+            binding.bluetoothImageView.setImageResource(R.drawable.ic_action_bluetooth_on_symbol);
         }
     }
 }
