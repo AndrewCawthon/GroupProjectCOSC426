@@ -50,6 +50,15 @@ public class MainActivity extends AppCompatActivity {
         // Need grant permission once per install
         cpf_checkBTPermissions();
 
+        binding.driveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent lv_it = new Intent(MainActivity.this, RobotDriveScreen.class);
+                lv_it.putExtra("RobotName", CV_ROBOTNAME);
+                startActivity(lv_it);
+            }
+        });
+
         binding.connectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,14 +75,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.driveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent lv_it = new Intent(MainActivity.this, RobotDriveScreen.class);
-                lv_it.putExtra("RobotName", CV_ROBOTNAME);
-                startActivity(lv_it);
-            }
-        });
 
         binding.tiltOnButton.setOnClickListener(new View.OnClickListener() {
             @Override
