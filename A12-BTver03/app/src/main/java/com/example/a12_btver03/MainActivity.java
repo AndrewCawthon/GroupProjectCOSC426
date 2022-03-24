@@ -175,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
             cv_is.close();
             cv_os.close();
             binding.secondaryTextView.setText(bd.getName() + " is disconnect " );
+            binding.bluetoothImageView.setImageResource(R.drawable.ic_action_bluetooth_off);
         } catch (Exception e) {
             binding.secondaryTextView.setText("Error in disconnect -> " + e.getMessage());
         }
