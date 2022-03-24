@@ -49,27 +49,20 @@ public class MainActivity extends AppCompatActivity {
         // Need grant permission once per install
         cpf_checkBTPermissions();
 
-        binding.button.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });
     }
 
     private void cpf_checkBTPermissions() {
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_GRANTED) {
-            binding.vvTvOut1.setText("BLUETOOTH_SCAN already granted.\n");
+            binding.connectionTextView.setText("BLUETOOTH_SCAN already granted.\n");
         } else {
-            binding.vvTvOut1.setText("BLUETOOTH_SCAN NOT granted.\n");
+            binding.connectionTextView.setText("BLUETOOTH_SCAN NOT granted.\n");
         }
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
-            binding.vvTvOut2.setText("BLUETOOTH_CONNECT NOT granted.\n");
+            binding.secondaryTextView.setText("BLUETOOTH_CONNECT NOT granted.\n");
         } else {
-            binding.vvTvOut2.setText("BLUETOOTH_CONNECT already granted.\n");
+            binding.secondaryTextView.setText("BLUETOOTH_CONNECT already granted.\n");
         }
     }
 
@@ -115,14 +108,14 @@ public class MainActivity extends AppCompatActivity {
             while (lv_it.hasNext())  {
                 lv_bd = lv_it.next();
                 if (lv_bd.getName().equalsIgnoreCase(name)) {
-                    binding.vvTvOut1.setText(name + " is in paired list");
+                    binding.connectionTextView.setText(name + " is in paired list");
                     return lv_bd;
                 }
             }
-            binding.vvTvOut1.setText(name + " is NOT in paired list");
+            binding.connectionTextView.setText(name + " is NOT in paired list");
         }
         catch (Exception e) {
-            binding.vvTvOut1.setText("Failed in findRobot() " + e.getMessage());
+            binding.connectionTextView.setText("Failed in findRobot() " + e.getMessage());
         }
         return null;
     }
@@ -133,12 +126,12 @@ public class MainActivity extends AppCompatActivity {
             cv_btSocket = bd.createRfcommSocketToServiceRecord
                     (UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
             cv_btSocket.connect();
-            binding.vvTvOut2.setText("Connect to " + bd.getName() + " at " + bd.getAddress());
+            binding.secondaryTextView.setText("Connect to " + bd.getName() + " at " + bd.getAddress());
             cv_is = cv_btSocket.getInputStream();
             cv_os = cv_btSocket.getOutputStream();
         }
         catch (Exception e) {
-            binding.vvTvOut2.setText("Error interacting with remote device [" +
+            binding.secondaryTextView.setText("Error interacting with remote device [" +
                     e.getMessage() + "]");
         }
     }
@@ -149,9 +142,9 @@ public class MainActivity extends AppCompatActivity {
             cv_btSocket.close();
             cv_is.close();
             cv_os.close();
-            binding.vvTvOut2.setText(bd.getName() + " is disconnect " );
+            binding.secondaryTextView.setText(bd.getName() + " is disconnect " );
         } catch (Exception e) {
-            binding.vvTvOut2.setText("Error in disconnect -> " + e.getMessage());
+            binding.secondaryTextView.setText("Error in disconnect -> " + e.getMessage());
         }
     }
 
@@ -194,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
             cv_os.flush();
         }
         catch (Exception e) {
-            binding.vvTvOut1.setText("Error in MoveForward(" + e.getMessage() + ")");
+            binding.connectionTextView.setText("Error in MoveForward(" + e.getMessage() + ")");
         }
     }
 
@@ -237,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
             cv_os.flush();
         }
         catch (Exception e) {
-            binding.vvTvOut1.setText("Error in Play Tone(" + e.getMessage() + ")");
+            binding.connectionTextView.setText("Error in Play Tone(" + e.getMessage() + ")");
         }
     }
 
