@@ -49,6 +49,34 @@ public class MainActivity extends AppCompatActivity {
         // Need grant permission once per install
         cpf_checkBTPermissions();
 
+        binding.connectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "Connect", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "Close", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.tiltOnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "Tilt On", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.tiltOffButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "Tilt On", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void cpf_checkBTPermissions() {
