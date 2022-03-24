@@ -5,7 +5,11 @@
       <map>
         <entry key="app/src/main/res/layout/activity_bluetooth_connection_screen.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+<<<<<<< HEAD
+        <entry key="app/src/main/res/layout/drive_screen.xml" value="0.3421875" />
+=======
         <entry key="app/src/main/res/layout/drive_screen.xml" value="0.325" />
+>>>>>>> master
         <entry key="app/src/main/res/menu/menu.xml" value="0.2796875" />
       </map>
     </option>
