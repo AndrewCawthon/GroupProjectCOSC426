@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.a12_btver03">
-    <!--Needed for pp to look for bluetooth devices-->
+    <!-- Needed for pp to look for bluetooth devices -->
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
-
-
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
     <application
@@ -18,7 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.A12BTver03">
         <activity
-            android:name="com.example.a12_btver03.MainActivity"
+            android:name=".BluetoothConnectionScreen"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
