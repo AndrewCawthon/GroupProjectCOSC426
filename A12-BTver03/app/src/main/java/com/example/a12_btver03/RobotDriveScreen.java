@@ -23,9 +23,9 @@ public class RobotDriveScreen extends AppCompatActivity {
         binding = DriveScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        if(getIntent() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            Intent intent = getIntent();
-        final String robotName = intent.getStringExtra("RobotName");
+        }
 
 
         binding.sbPowerhigh.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -146,6 +146,14 @@ public class RobotDriveScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getBaseContext(), "Backward", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.connectImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent lv_it = new Intent(RobotDriveScreen.this, MainActivity.class);
+                startActivity(lv_it);
             }
         });
 

@@ -19,6 +19,9 @@
             android:name=".BluetoothConnectionScreen"
             android:exported="false" />
         <activity
+            android:name=".RobotDriveScreen"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

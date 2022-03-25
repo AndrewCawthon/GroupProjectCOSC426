@@ -47,17 +47,9 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+
         // Need grant permission once per install
         cpf_checkBTPermissions();
-
-        binding.driveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent lv_it = new Intent(MainActivity.this, RobotDriveScreen.class);
-                lv_it.putExtra("RobotName", CV_ROBOTNAME);
-                startActivity(lv_it);
-            }
-        });
 
         binding.connectButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +79,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getBaseContext(), "Tilt Off", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.driveImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent lv_it = new Intent(MainActivity.this, RobotDriveScreen.class);
+                startActivity(lv_it);
             }
         });
 
