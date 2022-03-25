@@ -8,6 +8,7 @@ import com.example.a12_btver03.databinding.ActivityMainBinding;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+
         // Need grant permission once per install
         cpf_checkBTPermissions();
 
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         binding.tiltOnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,6 +79,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getBaseContext(), "Tilt Off", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.driveImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent lv_it = new Intent(MainActivity.this, RobotDriveScreen.class);
+                startActivity(lv_it);
             }
         });
 

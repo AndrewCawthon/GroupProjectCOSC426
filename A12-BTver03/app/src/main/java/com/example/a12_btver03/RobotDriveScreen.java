@@ -1,5 +1,6 @@
 package com.example.a12_btver03;
 
+import android.content.Intent;
 import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.a12_btver03.databinding.DriveScreenBinding;
 
+import java.util.Objects;
+
 public class RobotDriveScreen extends AppCompatActivity {
     DriveScreenBinding binding;
 
@@ -19,6 +22,11 @@ public class RobotDriveScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DriveScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        if(getIntent() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
 
         binding.sbPowerhigh.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int lowerLimit = 0;
@@ -138,6 +146,14 @@ public class RobotDriveScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getBaseContext(), "Backward", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.connectImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent lv_it = new Intent(RobotDriveScreen.this, MainActivity.class);
+                startActivity(lv_it);
             }
         });
 
