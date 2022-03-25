@@ -49,23 +49,24 @@
 
     <ImageView
         android:id="@+id/driveImageView"
-        android:src="@drawable/drive"
         android:layout_width="98dp"
         android:layout_height="97dp"
         android:layout_marginStart="1dp"
         android:layout_marginBottom="5dp"
+        android:src="@drawable/drive"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
     <ImageView
         android:id="@+id/servoImageView"
-        android:src="@drawable/servo"
         android:layout_width="102dp"
         android:layout_height="97dp"
         android:layout_marginBottom="5dp"
+        android:src="@drawable/servo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.004"
@@ -75,10 +76,10 @@
 
     <ImageView
         android:id="@+id/pollImageView"
-        android:src="@drawable/poll"
         android:layout_width="105dp"
         android:layout_height="97dp"
         android:layout_marginBottom="5dp"
+        android:src="@drawable/poll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -88,11 +89,11 @@
 
     <ImageView
         android:id="@+id/connectImageView"
-        android:src="@drawable/connect"
         android:layout_width="103dp"
         android:layout_height="97dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="5dp"
+        android:src="@drawable/connect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -103,8 +104,10 @@
     <ImageView
         android:id="@+id/driveUp"
         android:layout_width="105dp"
-        android:layout_height="84dp"
-        app:layout_constraintBottom_toTopOf="@+id/driveBack"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="327dp"
+        app:layout_constraintBottom_toTopOf="@+id/connectionDriveTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -174,5 +177,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.563"
         app:srcCompat="@drawable/drive_arrow" />
+
+    <TextView
+        android:id="@+id/connectionDriveTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="169dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/driveUp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

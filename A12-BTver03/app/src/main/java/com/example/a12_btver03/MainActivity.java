@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.menu_third: cpf_connectToEV3(cv_btDevice);
                 return true;
-            case R.id.menu_fourth: cpf_EV3MoveMotor();
+            case R.id.menu_fourth: cpf_EV3MoveMotorForward();
                 return true;
             case R.id.menu_fifth: cpf_EV3PlayTone();
                 return true;
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void cpf_EV3MoveMotor() {
+    private void cpf_EV3MoveMotorForward() {
         try {
             byte[] buffer = new byte[20];       // 0x12 command length
 
