@@ -81,7 +81,7 @@ public class RobotDriveScreen extends AppCompatActivity {
         binding.driveUp.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view){
-                cpf_EV3MoveMotorForward();
+                cpf_EV3MoveMotor();
                 /*possible feedback state
                 final float[] NEGATIVE = {
                         -1.0f,     0,     0,    0, 255, // red
@@ -110,6 +110,8 @@ public class RobotDriveScreen extends AppCompatActivity {
                 //feedback state
 
                 //insert drive right
+                cpf_EV3MoveMotorRight();
+                cpf_EV3MoveMotor();
                 return false;
             }
         });
@@ -126,6 +128,8 @@ public class RobotDriveScreen extends AppCompatActivity {
                 //feedback state
 
                 //insert drive left
+                cpf_EV3MoveMotorLeft();
+                cpf_EV3MoveMotor();
                 return false;
             }
         });
@@ -141,6 +145,8 @@ public class RobotDriveScreen extends AppCompatActivity {
             public boolean onLongClick(View view){
                 //feedback state
                 //insert reverse
+                cpf_EV3MoveMotorBackward();
+                cpf_EV3MoveMotor();
                 return false;
             }
         });
@@ -161,7 +167,7 @@ public class RobotDriveScreen extends AppCompatActivity {
         });
 
     }
-    private void cpf_EV3MoveMotorForward() {
+    private void cpf_EV3MoveMotor() {
         try {
             byte[] buffer = new byte[20];       // 0x12 command length
 
@@ -245,7 +251,69 @@ public class RobotDriveScreen extends AppCompatActivity {
     //source1
     //source2
     //destination
+    private void cpf_EV3MoveMotorLeft() {
+        try {
+            byte[] buffer = new byte[12];       //change once know size needed
+
+            buffer[0] = (byte) (12-2);
+            buffer[1] = 0;
+
+            buffer[2] = 34;
+            buffer[3] = 12;
+
+            buffer[4] = (byte) 0x80;
+
+            buffer[5] = 0;
+            buffer[6] = 0;
+
+            buffer[7] = (byte) 0xae;        //opcode
+
+            buffer[8] = (byte) 0;       //layer 0006
+            buffer[9] = (byte) 0x02;
+            //buffer[10] = (byte) 0x81;
+            //buffer[11] = (byte) 0xff; //-1 or ff
+
+
+
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            binding.connectionDriveTextView.setText("Error in MoveBackward(" + e.getMessage() + ")");
+        }
+    }
 
 
     //right
+    private void cpf_EV3MoveMotorRight() {
+        try {
+            byte[] buffer = new byte[12];       //change once know size needed
+
+            buffer[0] = (byte) (12-2);
+            buffer[1] = 0;
+
+            buffer[2] = 34;
+            buffer[3] = 12;
+
+            buffer[4] = (byte) 0x80;
+
+            buffer[5] = 0;
+            buffer[6] = 0;
+
+            buffer[7] = (byte) 0xae;        //opcode
+
+            buffer[8] = (byte) 0;       //layer 0006
+            buffer[9] = (byte) 0x04;
+            //buffer[10] = (byte) 0x81;
+            //buffer[11] = (byte) 0xff; //-1 or ff
+
+
+
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            binding.connectionDriveTextView.setText("Error in MoveBackward(" + e.getMessage() + ")");
+        }
+    }
 }
