@@ -141,6 +141,8 @@ public class RobotDriveScreen extends AppCompatActivity {
             public boolean onLongClick(View view){
                 //feedback state
                 //insert reverse
+                cpf_EV3MoveMotorBackward();
+                cpf_EV3MoveMotorForward();
                 return false;
             }
         });
@@ -149,6 +151,8 @@ public class RobotDriveScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getBaseContext(), "Backward", Toast.LENGTH_SHORT).show();
+                cpf_EV3MoveMotorBackward();
+                cpf_EV3MoveMotorForward();
             }
         });
 
@@ -179,7 +183,7 @@ public class RobotDriveScreen extends AppCompatActivity {
             buffer[7] = (byte) 0xae;
             buffer[8] = 0;
 
-            buffer[9] = (byte) 0x06;
+            buffer[9] = (byte) 0x02;
 
             buffer[10] = (byte) 0x81;
             buffer[11] = (byte) 0x32;

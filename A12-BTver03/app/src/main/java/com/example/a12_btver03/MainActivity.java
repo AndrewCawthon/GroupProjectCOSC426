@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getBaseContext(), "Tilt On", Toast.LENGTH_SHORT).show();
+                cpf_EV3MoveMotorBackward();
+                cpf_EV3MoveMotorForward();
             }
         });
 
@@ -131,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.menu_fourth: cpf_EV3MoveMotorForward();
                 return true;
-            case R.id.menu_fifth: cpf_EV3PlayTone();
+            case R.id.menu_fifth: cpf_EV3MoveMotorForward();
                 return true;
             case R.id.menu_sixth: cpf_disconnFromEV3(cv_btDevice);
                 return true;
@@ -210,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
             buffer[7] = (byte) 0xae;
             buffer[8] = 0;
 
-            buffer[9] = (byte) 0x06;
+            buffer[9] = (byte) 0x04;
 
             buffer[10] = (byte) 0x81;
             buffer[11] = (byte) 0x32;
@@ -275,6 +277,38 @@ public class MainActivity extends AppCompatActivity {
         }
         catch (Exception e) {
             binding.connectionTextView.setText("Error in Play Tone(" + e.getMessage() + ")");
+        }
+    }
+
+    private void cpf_EV3MoveMotorBackward() {
+        try {
+            byte[] buffer = new byte[12];       //change once know size needed
+
+            buffer[0] = (byte) (12-2);
+            buffer[1] = 0;
+
+            buffer[2] = 34;
+            buffer[3] = 12;
+
+            buffer[4] = (byte) 0x80;
+
+            buffer[5] = 0;
+            buffer[6] = 0;
+
+            buffer[7] = (byte) 0xa7;        //opcode
+
+            buffer[8] = (byte) 0;       //layer 0006
+            buffer[9] = (byte) 0x06;
+            buffer[10] = (byte) 0x81;
+            buffer[11] = (byte) 0xff; //-1 or ff
+
+
+
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            //.setText("Error in MoveBackward(" + e.getMessage() + ")");
         }
     }
 
