@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent lv_it = new Intent(MainActivity.this, RobotDriveScreen.class);
+                lv_it.putExtra("device", cv_btDevice);
+                //lv_it.putExtra("socket", cv_btSocket);
                 startActivity(lv_it);
             }
         });
@@ -131,11 +133,17 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.menu_third: cpf_connectToEV3(cv_btDevice);
                 return true;
-            case R.id.menu_fourth: cpf_EV3MoveMotorForward();
+            case R.id.menu_fourth:
+                cpf_EV3MoveMotor();
+                cpf_EV3MoveMotorForward();
                 return true;
-            case R.id.menu_fifth: cpf_EV3MoveMotorForward();
+            case R.id.menu_fifth: cpf_EV3PlayTone();
                 return true;
             case R.id.menu_sixth: cpf_disconnFromEV3(cv_btDevice);
+                return true;
+            case R.id.menu_seventh:
+                cpf_EV3MoveMotorBackward();
+                cpf_EV3MoveMotorBackwards();
                 return true;
             default:
                 return super.onOptionsItemSelected(menuItem);
@@ -212,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
             buffer[7] = (byte) 0xae;
             buffer[8] = 0;
 
-            buffer[9] = (byte) 0x04;
+            buffer[9] = (byte) 0x06;
 
             buffer[10] = (byte) 0x81;
             buffer[11] = (byte) 0x32;
@@ -236,6 +244,52 @@ public class MainActivity extends AppCompatActivity {
             binding.connectionTextView.setText("Error in MoveForward(" + e.getMessage() + ")");
         }
     }
+
+    private void cpf_EV3MoveMotorBackwards() {
+        try {
+            byte[] buffer = new byte[20];       // 0x12 command length
+
+            buffer[0] = (byte) (20-2);
+            buffer[1] = 0;
+
+            buffer[2] = 34;
+            buffer[3] = 12;
+
+            buffer[4] = (byte) 0x80;
+
+            buffer[5] = 0;
+            buffer[6] = 0;
+
+            buffer[7] = (byte) 0xae;
+            buffer[8] = 0;
+
+            buffer[9] = (byte) 0x06;
+
+            buffer[10] = (byte) 0x81;
+            buffer[11] = (byte) 0x32;
+
+            buffer[12] = 0;
+
+            buffer[13] = (byte) 0x82;
+            buffer[14] = (byte) 0x84;
+            buffer[15] = (byte) 0x03;
+
+            buffer[16] = (byte) 0x82;
+            buffer[17] = (byte) 0xB4;
+            buffer[18] = (byte) 0x00;
+
+            buffer[19] = 1;
+
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            binding.connectionTextView.setText("Error in MoveForward(" + e.getMessage() + ")");
+        }
+    }
+
+
+
 
     private void cpf_EV3PlayTone() {
         try {
@@ -312,6 +366,38 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void cpf_EV3MoveMotor() {
+        try {
+            byte[] buffer = new byte[12];       //change once know size needed
+
+            buffer[0] = (byte) (12-2);
+            buffer[1] = 0;
+
+            buffer[2] = 34;
+            buffer[3] = 12;
+
+            buffer[4] = (byte) 0x80;
+
+            buffer[5] = 0;
+            buffer[6] = 0;
+
+            buffer[7] = (byte) 0xa7;        //opcode
+
+            buffer[8] = (byte) 0;       //layer 0006
+            buffer[9] = (byte) 0x06;
+            buffer[10] = (byte) 0x81;
+            buffer[11] = (byte) 0x01; //-1 or ff
+
+
+
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            //.setText("Error in MoveBackward(" + e.getMessage() + ")");
+        }
+    }
+
     // https://www.geeksforgeeks.org/android-how-to-request-permissions-in-android-application/
     private void cpf_requestBTPermissions() {
         // We can give any value but unique for each permission.
@@ -337,6 +423,76 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this,
                     "BLUETOOTH_CONNECT already granted", Toast.LENGTH_SHORT).show();
             binding.bluetoothImageView.setImageResource(R.drawable.ic_action_bluetooth_on_symbol);
+        }
+    }
+
+    //opRI8 (or 16 or 32)...left
+    //0x2C
+    //source1
+    //source2
+    //destination
+    private void cpf_EV3MoveMotorLeft() {
+        try {
+            byte[] buffer = new byte[12];       //change once know size needed
+
+            buffer[0] = (byte) (12-2);
+            buffer[1] = 0;
+
+            buffer[2] = 34;
+            buffer[3] = 12;
+
+            buffer[4] = (byte) 0x80;
+
+            buffer[5] = 0;
+            buffer[6] = 0;
+
+            buffer[7] = (byte) 0xae;        //opcode
+
+            buffer[8] = (byte) 0;       //layer 0006
+            buffer[9] = (byte) 0x02;
+            //buffer[10] = (byte) 0x81;
+            //buffer[11] = (byte) 0xff; //-1 or ff
+
+
+
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            binding.connectionTextView.setText("Error in MoveBackward(" + e.getMessage() + ")");
+        }
+    }
+
+    //right
+    private void cpf_EV3MoveMotorRight() {
+        try {
+            byte[] buffer = new byte[12];       //change once know size needed
+
+            buffer[0] = (byte) (12-2);
+            buffer[1] = 0;
+
+            buffer[2] = 34;
+            buffer[3] = 12;
+
+            buffer[4] = (byte) 0x80;
+
+            buffer[5] = 0;
+            buffer[6] = 0;
+
+            buffer[7] = (byte) 0xae;        //opcode
+
+            buffer[8] = (byte) 0;       //layer 0006
+            buffer[9] = (byte) 0x04;
+            //buffer[10] = (byte) 0x81;
+            //buffer[11] = (byte) 0xff; //-1 or ff
+
+
+
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            binding.connectionTextView.setText("Error in MoveBackward(" + e.getMessage() + ")");
         }
     }
 }

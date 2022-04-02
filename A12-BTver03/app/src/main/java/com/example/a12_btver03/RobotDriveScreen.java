@@ -1,5 +1,8 @@
 package com.example.a12_btver03;
 
+import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
@@ -12,12 +15,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.a12_btver03.databinding.DriveScreenBinding;
 
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Objects;
+import java.util.UUID;
 
 public class RobotDriveScreen extends AppCompatActivity {
     DriveScreenBinding binding;
     private OutputStream cv_os = null;
+
+    private BluetoothSocket cv_btSocket = null;
+
+    private InputStream cv_is = null;
+    private BluetoothDevice btDevice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +35,19 @@ public class RobotDriveScreen extends AppCompatActivity {
         binding = DriveScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        if(getIntent() != null) {
+
+
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            btDevice = (BluetoothDevice) bundle.get("device");
+            cpf_connectToEV3(btDevice);
         }
+
+
+
+
 
 
         binding.sbPowerhigh.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -78,9 +98,9 @@ public class RobotDriveScreen extends AppCompatActivity {
                 }
             }
         });
-        binding.driveUp.setOnLongClickListener(new View.OnLongClickListener() {
+        binding.driveUp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view){
+            public void onClick(View view){
                 cpf_EV3MoveMotor();
                 /*possible feedback state
                 final float[] NEGATIVE = {
@@ -92,17 +112,17 @@ public class RobotDriveScreen extends AppCompatActivity {
 
                 binding.driveUp.setColorFilter(new ColorMatrixColorFilter(NEGATIVE));*/
                 //insert drive forward
-
-                return false;
             }
         });
-
+        /*
         binding.driveUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getBaseContext(), "Forward", Toast.LENGTH_SHORT).show();
             }
         });
+        */
+
 
         binding.driveRight.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -139,19 +159,19 @@ public class RobotDriveScreen extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Left", Toast.LENGTH_SHORT).show();
             }
         });
-
-        binding.driveBack.setOnLongClickListener(new View.OnLongClickListener() {
+        /*
+        binding.driveBack.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view){
+            public void onClick(View view){
                 //feedback state
                 //insert reverse
                 cpf_EV3MoveMotorBackward();
                 cpf_EV3MoveMotor();
 
-                return false;
+                //return false;
             }
         });
-
+        */
         binding.driveBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -317,6 +337,23 @@ public class RobotDriveScreen extends AppCompatActivity {
         }
         catch (Exception e) {
             binding.connectionDriveTextView.setText("Error in MoveBackward(" + e.getMessage() + ")");
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private void cpf_connectToEV3(BluetoothDevice bd) {
+        try  {
+            cv_btSocket = bd.createRfcommSocketToServiceRecord
+                    (UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
+            cv_btSocket.connect();
+            //binding.secondaryTextView.setText("Connect to " + bd.getName() + " at " + bd.getAddress());
+            //binding.bluetoothImageView.setImageResource(R.drawable.ic_action_bluetooth_on_symbol);
+            cv_is = cv_btSocket.getInputStream();
+            cv_os = cv_btSocket.getOutputStream();
+        }
+        catch (Exception e) {
+            //binding.secondaryTextView.setText("Error interacting with remote device [" +
+                   // e.getMessage() + "]");
         }
     }
 }

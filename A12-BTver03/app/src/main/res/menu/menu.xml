@@ -11,11 +11,14 @@
         android:title="@string/third_menu" />
     <item
         android:id="@+id/menu_fourth"
-        android:title="@string/fourth_menu" />
+        android:title="Move forward" />
     <item
         android:id="@+id/menu_fifth"
         android:title="@string/fifth_menu" />
     <item
         android:id="@+id/menu_sixth"
         android:title="@string/sixth_menu" />
+    <item
+        android:id="@+id/menu_seventh"
+        android:title="Move Backwards" />
 </menu>
