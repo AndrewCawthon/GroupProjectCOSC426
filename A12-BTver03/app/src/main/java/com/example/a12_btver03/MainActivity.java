@@ -314,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
             buffer[7] = (byte) 0xae;
             buffer[8] = 0;
 
-            buffer[9] = (byte) 0x06;
+            buffer[9] = (byte) 0x02;
 
             buffer[10] = (byte) 0x81;
             buffer[11] = (byte) 0x32;
@@ -357,7 +357,7 @@ public class MainActivity extends AppCompatActivity {
             buffer[7] = (byte) 0xae;
             buffer[8] = 0;
 
-            buffer[9] = (byte) 0x06;
+            buffer[9] = (byte) 0x04;
 
             buffer[10] = (byte) 0x81;
             buffer[11] = (byte) 0x32;
@@ -372,7 +372,7 @@ public class MainActivity extends AppCompatActivity {
             buffer[17] = (byte) 0xB4;
             buffer[18] = (byte) 0x00;
 
-            buffer[19] = 1;
+            buffer[19] = 0;
 
             cv_os.write(buffer);
             cv_os.flush();
