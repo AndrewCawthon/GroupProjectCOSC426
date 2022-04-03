@@ -21,4 +21,10 @@
     <item
         android:id="@+id/menu_seventh"
         android:title="Move Backwards" />
+    <item
+        android:id="@+id/menu_eighth"
+        android:title="Move Left" />
+    <item
+        android:id="@+id/menu_ninth"
+        android:title="Move Right" />
 </menu>

@@ -145,6 +145,14 @@ public class MainActivity extends AppCompatActivity {
                 cpf_EV3MoveMotorBackward();
                 cpf_EV3MoveMotorBackwards();
                 return true;
+            case R.id.menu_eighth:
+                cpf_EV3MoveMotorLeft();
+                cpf_EV3MoveMotorLefts();
+                return true;
+            case R.id.menu_ninth:
+                cpf_EV3MoveMotorRight();
+                cpf_EV3MoveMotorRights();
+                return true;
             default:
                 return super.onOptionsItemSelected(menuItem);
         }
@@ -288,8 +296,91 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void cpf_EV3MoveMotorLefts() {
+        try {
+            byte[] buffer = new byte[20];       // 0x12 command length
 
+            buffer[0] = (byte) (20-2);
+            buffer[1] = 0;
 
+            buffer[2] = 34;
+            buffer[3] = 12;
+
+            buffer[4] = (byte) 0x80;
+
+            buffer[5] = 0;
+            buffer[6] = 0;
+
+            buffer[7] = (byte) 0xae;
+            buffer[8] = 0;
+
+            buffer[9] = (byte) 0x06;
+
+            buffer[10] = (byte) 0x81;
+            buffer[11] = (byte) 0x32;
+
+            buffer[12] = 0;
+
+            buffer[13] = (byte) 0x82;
+            buffer[14] = (byte) 0x84;
+            buffer[15] = (byte) 0x03;
+
+            buffer[16] = (byte) 0x82;
+            buffer[17] = (byte) 0xB4;
+            buffer[18] = (byte) 0x00;
+
+            buffer[19] = 1;
+
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            binding.connectionTextView.setText("Error in MoveForward(" + e.getMessage() + ")");
+        }
+    }
+
+    private void cpf_EV3MoveMotorRights() {
+        try {
+            byte[] buffer = new byte[20];       // 0x12 command length
+
+            buffer[0] = (byte) (20-2);
+            buffer[1] = 0;
+
+            buffer[2] = 34;
+            buffer[3] = 12;
+
+            buffer[4] = (byte) 0x80;
+
+            buffer[5] = 0;
+            buffer[6] = 0;
+
+            buffer[7] = (byte) 0xae;
+            buffer[8] = 0;
+
+            buffer[9] = (byte) 0x06;
+
+            buffer[10] = (byte) 0x81;
+            buffer[11] = (byte) 0x32;
+
+            buffer[12] = 0;
+
+            buffer[13] = (byte) 0x82;
+            buffer[14] = (byte) 0x84;
+            buffer[15] = (byte) 0x03;
+
+            buffer[16] = (byte) 0x82;
+            buffer[17] = (byte) 0xB4;
+            buffer[18] = (byte) 0x00;
+
+            buffer[19] = 1;
+
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            binding.connectionTextView.setText("Error in MoveForward(" + e.getMessage() + ")");
+        }
+    }
 
     private void cpf_EV3PlayTone() {
         try {
