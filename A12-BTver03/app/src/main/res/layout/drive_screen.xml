@@ -53,39 +53,13 @@
         android:layout_height="97dp"
         android:layout_marginStart="1dp"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/drive"
+        android:src="@drawable/drive_selected"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/connectImageView"
+        app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <ImageView
-        android:id="@+id/servoImageView"
-        android:layout_width="102dp"
-        android:layout_height="97dp"
-        android:layout_marginBottom="5dp"
-        android:src="@drawable/servo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.004"
-        app:layout_constraintStart_toEndOf="@+id/driveImageView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <ImageView
-        android:id="@+id/pollImageView"
-        android:layout_width="105dp"
-        android:layout_height="97dp"
-        android:layout_marginBottom="5dp"
-        android:src="@drawable/poll"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/servoImageView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.998" />
 
     <ImageView
         android:id="@+id/connectImageView"
@@ -93,11 +67,9 @@
         android:layout_height="97dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/connect"
+        android:src="@drawable/connect_mine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/pollImageView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -107,18 +79,20 @@
         android:layout_height="0dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="327dp"
+        android:longClickable="true"
         app:layout_constraintBottom_toTopOf="@+id/connectionDriveTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.16"
         app:srcCompat="@drawable/arrow_default"
-        android:longClickable="true"/>
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/driveBack"
         android:layout_width="105dp"
         android:layout_height="84dp"
+        android:longClickable="true"
         android:rotation="180"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,12 +100,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.211"
         app:srcCompat="@drawable/arrow_default"
-        android:longClickable="true"/>
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/driveRight"
         android:layout_width="105dp"
         android:layout_height="84dp"
+        android:longClickable="true"
         android:rotation="90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -140,12 +115,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.211"
         app:srcCompat="@drawable/arrow_default"
-        android:longClickable="true"/>
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/driveLeft"
         android:layout_width="105dp"
         android:layout_height="84dp"
+        android:longClickable="true"
         android:rotation="270"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -154,7 +130,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.213"
         app:srcCompat="@drawable/arrow_default"
-        android:longClickable="true"/>
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/powerUp"
