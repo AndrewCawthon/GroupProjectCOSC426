@@ -210,6 +210,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public BluetoothAdapter get_cv_btInterface(){
+        return cv_btInterface;
+    }
+    public BluetoothDevice get_cv_btDevice(){
+        return cv_btDevice;
+    }
+    public BluetoothSocket get_cv_btSocket(){
+        return cv_btSocket;
+    }
+    public InputStream get_cv_is(){
+        return cv_is;
+    }
+    public OutputStream get_cv_os(){
+        return cv_os;
+    }
+
     private void cpf_EV3MoveMotorForward() {
         try {
             byte[] buffer = new byte[20];       // 0x12 command length

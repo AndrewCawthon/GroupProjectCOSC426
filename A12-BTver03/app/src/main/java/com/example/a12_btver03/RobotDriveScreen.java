@@ -1,6 +1,7 @@
 package com.example.a12_btver03;
 
 import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import com.example.a12_btver03.databinding.DriveScreenBinding;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 public class RobotDriveScreen extends AppCompatActivity {
@@ -28,6 +30,10 @@ public class RobotDriveScreen extends AppCompatActivity {
 
     private InputStream cv_is = null;
     private BluetoothDevice btDevice;
+    private BluetoothAdapter cv_btInterface = null;
+    private Set<BluetoothDevice> cv_pairedDevices = null;
+    private BluetoothDevice cv_btDevice = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +43,20 @@ public class RobotDriveScreen extends AppCompatActivity {
 
 
 
-        Bundle bundle = getIntent().getExtras();
+//        Bundle bundle = getIntent().getExtras();
+//
+//        if (bundle != null) {
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//            btDevice = (BluetoothDevice) bundle.get("device");
+//            cpf_connectToEV3(btDevice);
+//        }
 
-        if (bundle != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            btDevice = (BluetoothDevice) bundle.get("device");
-            cpf_connectToEV3(btDevice);
-        }
-
-
-
+        MainActivity main = new MainActivity();
+        btDevice = main.get_cv_btDevice();
+        cv_btInterface = main.get_cv_btInterface();
+        cv_btSocket = main.get_cv_btSocket();
+        cv_is = main.get_cv_is();
+        cv_os = main.get_cv_os();
 
 
 
@@ -102,6 +112,7 @@ public class RobotDriveScreen extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 cpf_EV3MoveMotor();
+                cpf_EV3MoveMotorForward();
                 /*possible feedback state
                 final float[] NEGATIVE = {
                         -1.0f,     0,     0,    0, 255, // red
@@ -230,6 +241,48 @@ public class RobotDriveScreen extends AppCompatActivity {
         }
         catch (Exception e) {
             binding.connectionDriveTextView.setText("Error in MoveForward(" + e.getMessage() + ")");
+        }
+    }
+    private void cpf_EV3MoveMotorForward() {
+        try {
+            byte[] buffer = new byte[20];       // 0x12 command length
+
+            buffer[0] = (byte) (20-2);
+            buffer[1] = 0;
+
+            buffer[2] = 34;
+            buffer[3] = 12;
+
+            buffer[4] = (byte) 0x80;
+
+            buffer[5] = 0;
+            buffer[6] = 0;
+
+            buffer[7] = (byte) 0xae;
+            buffer[8] = 0;
+
+            buffer[9] = (byte) 0x06;
+
+            buffer[10] = (byte) 0x81;
+            buffer[11] = (byte) 0x32;
+
+            buffer[12] = 0;
+
+            buffer[13] = (byte) 0x82;
+            buffer[14] = (byte) 0x84;
+            buffer[15] = (byte) 0x03;
+
+            buffer[16] = (byte) 0x82;
+            buffer[17] = (byte) 0xB4;
+            buffer[18] = (byte) 0x00;
+
+            buffer[19] = 1;
+
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            //binding.connectionTextView.setText("Error in MoveForward(" + e.getMessage() + ")");
         }
     }
 
