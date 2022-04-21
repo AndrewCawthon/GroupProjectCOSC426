@@ -94,6 +94,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        binding.driveUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cpf_EV3MoveMotor();
+                cpf_EV3MoveMotorForward();
+            }
+        });
+
+        binding.driveBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cpf_EV3MoveMotorBackward();
+                cpf_EV3MoveMotorBackwards();
+            }
+        });
+
+        binding.driveLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cpf_EV3MoveMotorLeft();
+                cpf_EV3MoveMotorLefts();
+            }
+        });
+        binding.driveRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cpf_EV3MoveMotorRight();
+                cpf_EV3MoveMotorRights();
+            }
+        });
+
     }
 
     private void cpf_checkBTPermissions() {

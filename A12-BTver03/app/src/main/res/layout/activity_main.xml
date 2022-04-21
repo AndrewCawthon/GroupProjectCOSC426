@@ -80,7 +80,7 @@
         android:layout_height="97dp"
         android:layout_marginStart="1dp"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/drive"
+        android:src="@drawable/drive_mine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/connectImageView"
         app:layout_constraintHorizontal_bias="0.004"
@@ -94,12 +94,70 @@
         android:layout_height="97dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/connect"
+        android:src="@drawable/connect_mine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
+
+    <ImageView
+        android:id="@+id/driveUp"
+        android:layout_width="60dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="352dp"
+        android:longClickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_default"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/driveBack"
+        android:layout_width="64dp"
+        android:layout_height="54dp"
+        android:longClickable="true"
+        android:rotation="180"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.234"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.643"
+        app:srcCompat="@drawable/arrow_default"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/driveRight"
+        android:layout_width="67dp"
+        android:layout_height="45dp"
+        android:longClickable="true"
+        android:rotation="90"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.736"
+        app:srcCompat="@drawable/arrow_default"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/driveLeft"
+        android:layout_width="60dp"
+        android:layout_height="44dp"
+        android:longClickable="true"
+        android:rotation="270"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.035"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.737"
+        app:srcCompat="@drawable/arrow_default"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/legoTextView"
