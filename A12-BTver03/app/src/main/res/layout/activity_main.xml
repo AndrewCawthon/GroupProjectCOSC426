@@ -105,12 +105,13 @@
         android:id="@+id/driveUp"
         android:layout_width="60dp"
         android:layout_height="53dp"
-        android:layout_marginTop="352dp"
         android:longClickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.641"
         app:srcCompat="@drawable/arrow_default"
         tools:ignore="SpeakableTextPresentCheck" />
 
