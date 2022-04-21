@@ -27,4 +27,7 @@
     <item
         android:id="@+id/menu_ninth"
         android:title="Move Right" />
+    <item
+        android:id="@+id/menu_tenth"
+        android:title="Sensor" />
 </menu>

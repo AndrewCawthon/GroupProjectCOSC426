@@ -51,48 +51,7 @@ public class MainActivity extends AppCompatActivity {
         // Need grant permission once per install
         cpf_checkBTPermissions();
 
-        binding.connectButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "Connect", Toast.LENGTH_SHORT).show();
-                cpf_connectToEV3(cv_btDevice);
-                //binding.bluetoothImageView.setImageResource(R.drawable.ic_action_bluetooth_on_symbol);
-            }
-        });
 
-        binding.closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "Close", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-        binding.tiltOnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "Tilt On", Toast.LENGTH_SHORT).show();
-                cpf_EV3MoveMotorBackward();
-                cpf_EV3MoveMotorForward();
-            }
-        });
-
-        binding.tiltOffButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "Tilt Off", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        binding.driveImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent lv_it = new Intent(MainActivity.this, RobotDriveScreen.class);
-                lv_it.putExtra("device", cv_btDevice);
-                //lv_it.putExtra("socket", cv_btSocket);
-                startActivity(lv_it);
-            }
-        });
 
         binding.driveUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +81,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 cpf_EV3MoveMotorRight();
                 cpf_EV3MoveMotorRights();
+            }
+        });
+        binding.xylophone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cpf_EV3PlayTone();
             }
         });
 
@@ -183,6 +148,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_ninth:
                 cpf_EV3MoveMotorRight();
                 cpf_EV3MoveMotorRights();
+                return true;
+            case R.id.menu_tenth:
+                cpf_EV3ChangeSensorColorRandom();
                 return true;
             default:
                 return super.onOptionsItemSelected(menuItem);
@@ -631,6 +599,44 @@ public class MainActivity extends AppCompatActivity {
         }
         catch (Exception e) {
             binding.connectionTextView.setText("Error in MoveBackward(" + e.getMessage() + ")");
+        }
+    }
+
+    private void cpf_EV3ChangeSensorColorRandom() {
+        try {
+            byte[] buffer = new byte[19];       // 0x12 command length
+
+            buffer[0] = (byte) (19-2);      //length
+            buffer[1] = 0;                  //empty header
+
+            buffer[2] = 34;                 //value - just random numbers i guess??
+            buffer[3] = 12;                 //^
+
+            buffer[4] = (byte) 0x80;        //flushes buffers with next 2 var?
+
+            buffer[5] = 0;                  //empty header?
+            buffer[6] = 0;                  //empty header?
+
+            buffer[7] = (byte) 0x99;         //opcode
+
+            buffer[8] = (byte) 0x1D;         //command
+            buffer[9] = 0;                   //chain layer
+            buffer[10] = 0x01;                //light sensor port
+            buffer[12] = (byte) (Math.random() * ( 7 - 1 )); //random color
+            buffer[13] = 2;                   //mode - 2 for color
+            buffer[14] = 0;
+            buffer[15] = 0;
+
+            buffer[16] = (byte) 0x81;       //read - reads move command I guess? - are these cmds necessary?
+            buffer[17] = (byte) 0x32;       //move (8 source - 32 dest) - sends command?
+
+            buffer[18] = 1;                 //polarity 1
+
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            binding.connectionTextView.setText("Error in MoveForward(" + e.getMessage() + ")");
         }
     }
 }
