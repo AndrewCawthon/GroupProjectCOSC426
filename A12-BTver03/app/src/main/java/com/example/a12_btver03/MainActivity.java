@@ -60,54 +60,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "Close", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-        binding.tiltOnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "Tilt On", Toast.LENGTH_SHORT).show();
-                cpf_EV3MoveMotorBackward();
-                cpf_EV3MoveMotorForward();
-            }
-        });
-
-        binding.tiltOffButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "Tilt Off", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        binding.driveImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent lv_it = new Intent(MainActivity.this, RobotDriveScreen.class);
-                lv_it.putExtra("device", cv_btDevice);
-                //lv_it.putExtra("socket", cv_btSocket);
-                startActivity(lv_it);
-            }
-        });
-
     }
 
     private void cpf_checkBTPermissions() {
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_GRANTED) {
-            binding.connectionTextView.setText("BLUETOOTH_SCAN already granted.\n");
+            Toast.makeText(getBaseContext(), "BLUETOOTH_SCAN already granted.\n", Toast.LENGTH_SHORT).show();
         } else {
-            binding.connectionTextView.setText("BLUETOOTH_SCAN NOT granted.\n");
+            Toast.makeText(getBaseContext(), "BLUETOOTH_SCAN NOT granted.\n", Toast.LENGTH_SHORT).show();
         }
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
-            binding.secondaryTextView.setText("BLUETOOTH_CONNECT NOT granted.\n");
+            Toast.makeText(getBaseContext(), "BLUETOOTH_CONNECT NOT granted.\n", Toast.LENGTH_SHORT).show();
+
         } else {
-            binding.secondaryTextView.setText("BLUETOOTH_CONNECT already granted.\n");
+            Toast.makeText(getBaseContext(), "BLUETOOTH_CONNECT already granted.\n", Toast.LENGTH_SHORT).show();
             binding.bluetoothImageView.setImageResource(R.drawable.ic_action_bluetooth_on_symbol);
         }
     }
@@ -168,14 +135,16 @@ public class MainActivity extends AppCompatActivity {
             while (lv_it.hasNext())  {
                 lv_bd = lv_it.next();
                 if (lv_bd.getName().equalsIgnoreCase(name)) {
-                    binding.connectionTextView.setText(name + " is in paired list");
+                    Toast.makeText(getBaseContext(), name + " is in paired list", Toast.LENGTH_SHORT).show();
+
                     return lv_bd;
                 }
             }
-            binding.connectionTextView.setText(name + " is NOT in paired list");
+
+            Toast.makeText(getBaseContext(), name + " is NOT in paired list", Toast.LENGTH_SHORT).show();
         }
         catch (Exception e) {
-            binding.connectionTextView.setText("Failed in findRobot() " + e.getMessage());
+            Toast.makeText(getBaseContext(), "Failed in findRobot() " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return null;
     }
@@ -186,14 +155,14 @@ public class MainActivity extends AppCompatActivity {
             cv_btSocket = bd.createRfcommSocketToServiceRecord
                     (UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
             cv_btSocket.connect();
-            binding.secondaryTextView.setText("Connect to " + bd.getName() + " at " + bd.getAddress());
+            Toast.makeText(getBaseContext(), "Connect to " + bd.getName() + " at " + bd.getAddress(), Toast.LENGTH_SHORT).show();
             binding.bluetoothImageView.setImageResource(R.drawable.ic_action_bluetooth_on_symbol);
             cv_is = cv_btSocket.getInputStream();
             cv_os = cv_btSocket.getOutputStream();
         }
         catch (Exception e) {
-            binding.secondaryTextView.setText("Error interacting with remote device [" +
-                    e.getMessage() + "]");
+            Toast.makeText(getBaseContext(), "Error interacting with remote device [" +
+                    e.getMessage() + "]", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -203,27 +172,11 @@ public class MainActivity extends AppCompatActivity {
             cv_btSocket.close();
             cv_is.close();
             cv_os.close();
-            binding.secondaryTextView.setText(bd.getName() + " is disconnect " );
+            Toast.makeText(getBaseContext(), bd.getName() + " is disconnect ", Toast.LENGTH_SHORT).show();
             binding.bluetoothImageView.setImageResource(R.drawable.ic_action_bluetooth_off);
         } catch (Exception e) {
-            binding.secondaryTextView.setText("Error in disconnect -> " + e.getMessage());
+            Toast.makeText(getBaseContext(), "Error in disconnect -> " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-    }
-
-    public BluetoothAdapter get_cv_btInterface(){
-        return cv_btInterface;
-    }
-    public BluetoothDevice get_cv_btDevice(){
-        return cv_btDevice;
-    }
-    public BluetoothSocket get_cv_btSocket(){
-        return cv_btSocket;
-    }
-    public InputStream get_cv_is(){
-        return cv_is;
-    }
-    public OutputStream get_cv_os(){
-        return cv_os;
     }
 
     private void cpf_EV3MoveMotorForward() {
@@ -265,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
             cv_os.flush();
         }
         catch (Exception e) {
-            binding.connectionTextView.setText("Error in MoveForward(" + e.getMessage() + ")");
+            Toast.makeText(getBaseContext(), "Error in MoveForward(" + e.getMessage() + ")", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -308,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
             cv_os.flush();
         }
         catch (Exception e) {
-            binding.connectionTextView.setText("Error in MoveForward(" + e.getMessage() + ")");
+            Toast.makeText(getBaseContext(), "Error in MoveForward(" + e.getMessage() + ")", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -351,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
             cv_os.flush();
         }
         catch (Exception e) {
-            binding.connectionTextView.setText("Error in MoveForward(" + e.getMessage() + ")");
+            Toast.makeText(getBaseContext(), "Error in MoveForward(" + e.getMessage() + ")", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -394,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
             cv_os.flush();
         }
         catch (Exception e) {
-            binding.connectionTextView.setText("Error in MoveForward(" + e.getMessage() + ")");
+            Toast.makeText(getBaseContext(), "Error in MoveForward(" + e.getMessage() + ")", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -437,7 +390,7 @@ public class MainActivity extends AppCompatActivity {
             cv_os.flush();
         }
         catch (Exception e) {
-            binding.connectionTextView.setText("Error in Play Tone(" + e.getMessage() + ")");
+            Toast.makeText(getBaseContext(), "Error in Play Tone(" + e.getMessage() + ")", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -566,7 +519,7 @@ public class MainActivity extends AppCompatActivity {
             cv_os.flush();
         }
         catch (Exception e) {
-            binding.connectionTextView.setText("Error in MoveBackward(" + e.getMessage() + ")");
+            Toast.makeText(getBaseContext(), "Error in MoveBackward(" + e.getMessage() + ")", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -599,7 +552,7 @@ public class MainActivity extends AppCompatActivity {
             cv_os.flush();
         }
         catch (Exception e) {
-            binding.connectionTextView.setText("Error in MoveBackward(" + e.getMessage() + ")");
+            Toast.makeText(getBaseContext(), "Error in MoveBackward(" + e.getMessage() + ")", Toast.LENGTH_SHORT).show();
         }
     }
 }
