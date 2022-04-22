@@ -16,9 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.A12BTver03">
         <activity
-            android:name=".BluetoothConnectionScreen"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
