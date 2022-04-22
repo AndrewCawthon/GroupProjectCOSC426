@@ -353,6 +353,69 @@ public class MainActivity extends AppCompatActivity {
             binding.connectionTextView.setText("Error in MoveForward(" + e.getMessage() + ")");
         }
     }
+    //trying to get the robot to go in a complete circle. Didn't happen
+    private void cpf_EV3MoveMotorCircle() {
+        try {
+            byte[] buffer = new byte[33];       // 0x12 command length
+
+            buffer[0] = (byte) (33-2);
+            buffer[1] = 0;
+
+            buffer[2] = 34;
+            buffer[3] = 12;
+
+            buffer[4] = (byte) 0x80;
+
+            buffer[5] = 0;
+            buffer[6] = 0;
+
+            buffer[7] = (byte) 0xae;
+            buffer[8] = 0;
+
+            buffer[9] = (byte) 0x02;
+
+            buffer[10] = (byte) 0x81;
+            buffer[11] = (byte) 0x32;
+
+            buffer[12] = 24;
+
+            buffer[13] = (byte) 0x82;
+            buffer[14] = (byte) 0x84;
+            buffer[15] = (byte) 0x03;
+
+            buffer[16] = (byte) 0x82;
+            buffer[17] = (byte) 0xB4;
+            buffer[18] = (byte) 0x00;
+
+            buffer[19] = 1;
+
+            buffer[20] = (byte) 0xae;
+            buffer[21] = 0;
+
+            buffer[22] = (byte) 0x02;
+
+            buffer[23] = (byte) 0x81;
+            buffer[24] = (byte) 0x32;
+
+            buffer[25] = 0;
+
+            buffer[26] = (byte) 0x82;
+            buffer[27] = (byte) 0x84;
+            buffer[28] = (byte) 0x03;
+
+            buffer[29] = (byte) 0x82;
+            buffer[30] = (byte) 0xB4;
+            buffer[31] = (byte) 0x00;
+
+            buffer[32] = 1;
+
+            cv_os.write(buffer);
+            cv_os.flush();
+        }
+        catch (Exception e) {
+            binding.connectionTextView.setText("Error in MoveForward(" + e.getMessage() + ")");
+        }
+    }
 
     private void cpf_EV3MoveMotorRights() {
         try {
