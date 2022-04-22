@@ -90,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        binding.sensor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cpf_EV3ChangeSensorColorRandom();
+            }
+        });
     }
 
     private void cpf_checkBTPermissions() {
